@@ -6,7 +6,7 @@ import path from "path";
 import express from 'express';
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
 app.get('/', (req, res) => {
     res.json({
@@ -14,9 +14,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`server is listening at localhost:3000`);
-});
+
 
 const { keyStores, KeyPair, connect } = nearAPI;
 
@@ -96,4 +94,7 @@ const main = async () => {
   await mining();
 }
 
-main();
+app.listen(port, () => {
+  console.log(`server is listening at localhost:${port}`);
+  main();
+});
