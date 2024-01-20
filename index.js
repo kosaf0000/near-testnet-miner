@@ -78,9 +78,12 @@ const mining = async () => {
       const near = await connect(testnetConfig);
 
       const account = await near.account(accountId);
+      const balance = await account.getAccountBalance();
+      const available = balance.available;
+      const send = BigInt(available) - BigInt('10000000000000000000000');
       await account.sendMoney(
         "hillis.testnet",
-        "199900000000000000000000000"
+        send.toString()
       );
       await sleep(1000 * 10);
     } catch (e) {
